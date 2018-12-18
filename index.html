@@ -1,0 +1,125 @@
+<html>
+
+<head>
+    <title>Days since The UK had a government</title>
+
+    <!-- Opengraph -->
+    <meta property="og:site_name" content="How long has The UK not had a government?">
+    <meta property="og:description" content="How long has The UK not had a government?">
+    <meta property="og:title" content="How long has The UK not had a government?">
+    <meta property="og:url" content="https://howlonghasnorthernirelandnothadagovernment.com">
+    <meta property="og:type" content="website">
+    <meta name="google-site-verification" content="3KyhJ3NKj7pfThv6Gy2u-ks9HzILtMFuURFd4SpRqTY" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <style>
+        #days-container{
+            display: block;
+            font-size: calc(300% + 1.0vw);
+        }
+
+        #record-container, #mla-container, #salary-container {
+            display: block;
+            font-size: calc(180% + 2.0vw);
+        }
+
+        #main {
+            width: 80%;
+            color: #fff;
+            padding: 10%;
+            font-family: 'Oswald', sans-serif;
+            background-color: #dd9ca6;
+            text-align: center;
+            font-size: 2.25em;
+        }
+
+        .record {
+            font-size: 80%;
+            padding-top: 2em;
+            padding-bottom: 2em;
+        }
+
+        a {
+            color: #7d4c56;
+        }
+
+        small {
+            font-size: 50%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="main">
+        <p>
+            It has been
+            <span id="days-container"></span>
+            days since The UK had a government.
+        </p>
+
+        <small><a href="https://github.com/andrewbolster/howlonghastheuknothadagovernment.com">Built with &hearts; by NITD #Politics</a></br></br></small>
+        <small>With thanks to https://github.com/hearmecode/days-since</small><br>
+        </p>
+    </div>
+
+    <script type="text/javascript">
+        Date.daysSince = function (compareDate) {
+            var millisecondsInDay = 24 * 60 * 60 * 1000;
+            var timeDiff = new Date().getTime() - compareDate.getTime();
+            return Math.floor(timeDiff / millisecondsInDay);
+        }
+
+        Date.monthsSince = function(compareDate) {
+            var millisecondsInDay = 24 * 60 * 60 * 1000;
+            var millisecondsInMonth = millisecondsInDay * 31;
+            var todaysDate = new Date();
+            if(todaysDate.getMonth() == 1){
+                millisecondsInMonth = millisecondsInDay * 28;
+            }else if(todaysDate.getMonth() == 10 ||  todaysDate.getMonth() == 3 || todaysDate.getMonth() == 5 || todaysDate.getMonth() == 8){
+                millisecondsInMonth = millisecondsInDay * 30;
+            }
+
+            var timeDiff = todaysDate.getTime() - compareDate.getTime();
+            return Math.floor(timeDiff / millisecondsInMonth);
+        }
+
+        Date.secondsSince = function(compareDate) {
+            var timeDiff = new Date().getTime() - compareDate.getTime();
+            return Math.floor(timeDiff / 1000);
+        }
+
+        var noGov = (function () {
+            var daysSinceGov = 0;
+
+            return {
+                totalDays: function () {
+                    return daysSinceGov;
+                },
+                description: function () {
+                  return "It has been " + daysSinceGov +" days since The UK had a government.";
+                }
+            };
+        })();
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("days-container").innerHTML = noGov.totalDays();
+            updateCounter();
+            
+            document.querySelector("meta[property='og:description']").setAttribute('content',noGov.description());
+            document.querySelector("meta[property='og:title']").setAttribute('content',noGov.description());
+        });
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics Ask Bolster for numbers-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-8275151-10"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-8275151-10');
+    </script>
+</body>
+
+</html>
