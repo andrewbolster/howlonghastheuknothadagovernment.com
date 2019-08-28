@@ -91,7 +91,9 @@
         }
 
         var noGov = (function () {
-            var daysSinceGov = 0;
+            var noGovDate = new Date(2019, 7, 27);
+            var currentRecordDays = 589;
+            var daysSinceGov = Date.daysSince(noGovDate);
 
             return {
                 totalDays: function () {
